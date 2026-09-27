@@ -1,0 +1,67 @@
+.assessment-theme-shell {
+  --assessment-panel: var(--panel-strong);
+  --assessment-inset: var(--bg);
+  --assessment-border: var(--line);
+  --assessment-shadow: var(--shadow);
+  --assessment-text: var(--ink);
+}
+
+body[data-theme="dark"] .assessment-theme-shell {
+  --assessment-panel: #0d1624;
+  --assessment-inset: #111f31;
+  --assessment-border: #22334a;
+  --assessment-shadow: 0 14px 35px rgba(0, 0, 0, .24);
+  --assessment-text: #e7eef8;
+}
+
+.assessment-upload-shell {
+  background: var(--assessment-inset);
+  border-color: var(--assessment-border);
+  overflow: hidden;
+}
+
+.assessment-upload-shell > .w-full > .group\/file > .absolute.inset-0 {
+  display: none;
+}
+
+.assessment-upload-shell .group\/file {
+  color: var(--assessment-text);
+}
+
+.assessment-upload-shell .bg-gray-100,
+.assessment-upload-shell .bg-gray-50 {
+  background-color: color-mix(in srgb, var(--assessment-panel) 88%, var(--assessment-text));
+}
+
+body[data-theme="dark"] .assessment-upload-shell .dark\:bg-neutral-900,
+body[data-theme="dark"] .assessment-upload-shell .dark\:bg-neutral-950 {
+  background-color: #0b1421;
+}
+
+body[data-theme="dark"] .assessment-upload-shell .text-neutral-700,
+body[data-theme="dark"] .assessment-upload-shell .text-neutral-300 {
+  color: #f2f7ff;
+}
+
+body[data-theme="dark"] .assessment-upload-shell .text-neutral-400 {
+  color: #b9c9dc;
+}
+
+body[data-theme="dark"] .assessment-upload-shell .text-neutral-600 {
+  color: #d5e2f0;
+}
+
+body[data-theme="dark"] .assessment-upload-shell svg {
+  color: #d9f5ff;
+  filter: drop-shadow(0 0 5px rgba(62, 197, 247, .35));
+}
+
+body[data-theme="dark"] .assessment-upload-shell .bg-white {
+  background-color: #14253a;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .35);
+}
+
+body:not([data-theme="dark"]) .assessment-upload-shell .text-neutral-700,
+body:not([data-theme="dark"]) .assessment-upload-shell .text-neutral-400 {
+  color: var(--assessment-text);
+}

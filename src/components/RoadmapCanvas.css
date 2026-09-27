@@ -1,0 +1,264 @@
+/* RoadmapCanvas — scoped with an "rmc-" prefix so it won't collide with
+   your site's own classes. Override the custom properties on .rmc-root
+   (or any ancestor) to theme it without touching this file. */
+
+.rmc-root {
+  --rc-bg: #f5faff;
+  --rc-bg-dot: rgba(8, 120, 238, .1);
+  --rc-panel: #ffffff;
+  --rc-panel-border: #dce8f7;
+  --rc-text: #18345c;
+  --rc-text-dim: #5d7495;
+  --rc-pending: #7f8ea8;
+  --rc-active: #0878ee;
+  --rc-done: #18b7aa;
+  --rc-danger: #f2545b;
+  --rc-spark: #ffc857;
+  --rc-radius: 14px;
+  --rc-font: Inter, Arial, sans-serif;
+
+  position: relative;
+  width: 100%;
+  background:
+    radial-gradient(circle at 1px 1px, var(--rc-bg-dot) 1.5px, transparent 0) 0 0/22px 22px,
+    var(--rc-bg);
+  border-radius: var(--rc-radius);
+  overflow: hidden;
+  font-family: var(--rc-font);
+  color: var(--rc-text);
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: none;
+  box-sizing: border-box;
+}
+.rmc-root,
+.rmc-root * { transition: background-color .25s ease, border-color .25s ease, color .25s ease; }
+body[data-theme="dark"] .rmc-root {
+  --rc-bg: #0b0f18;
+  --rc-bg-dot: #161d2a;
+  --rc-panel: #171d28;
+  --rc-panel-border: #2a3749;
+  --rc-text: #e7e9ee;
+  --rc-text-dim: #9eacc0;
+  --rc-pending: #748197;
+  --rc-active: #3ec5f7;
+  --rc-done: #3ddc84;
+}
+.rmc-root *, .rmc-root *::before, .rmc-root *::after { box-sizing: border-box; }
+
+.rmc-toolbar {
+  position: absolute;
+  top: 14px; left: 14px;
+  z-index: 5;
+  display: flex; gap: 8px; align-items: center;
+}
+.rmc-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--rc-panel);
+  border: 1px solid var(--rc-panel-border);
+  color: var(--rc-text);
+  font: 600 12.5px var(--rc-font);
+  padding: 7px 12px;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: border-color .15s ease, transform .15s ease, background .15s ease;
+}
+.rmc-btn:hover { border-color: #3d414c; background: #1c1f26; transform: translateY(-1px); }
+.rmc-btn.rmc-add { color: #0c1b13; background: var(--rc-done); border-color: var(--rc-done); }
+.rmc-btn.rmc-add:hover { filter: brightness(1.08); }
+
+.rmc-zoom {
+  position: absolute;
+  right: 14px; bottom: 14px;
+  z-index: 5;
+  display: flex; flex-direction: column; gap: 6px;
+  background: var(--rc-panel);
+  border: 1px solid var(--rc-panel-border);
+  border-radius: 10px;
+  padding: 4px;
+}
+.rmc-zoom button {
+  width: 30px; height: 30px;
+  display: flex; align-items: center; justify-content: center;
+  background: transparent; border: none; color: var(--rc-text);
+  font-size: 15px; cursor: pointer; border-radius: 7px;
+}
+.rmc-zoom button:hover { background: #262a32; }
+
+.rmc-viewport { position: absolute; inset: 0; cursor: default; overflow: hidden; }
+.rmc-viewport.rmc-panning { cursor: grabbing; }
+
+.rmc-world { position: absolute; top: 0; left: 0; transform-origin: 0 0; will-change: transform; }
+
+.rmc-edges { position: absolute; top: 0; left: 0; overflow: visible; pointer-events: none; }
+
+.rmc-edge-path { fill: none; stroke: var(--rc-panel-border); stroke-width: 1.6; opacity: .8; }
+.rmc-edge-path.rmc-flow { stroke-dasharray: 5 7; animation: rmc-dash 1.1s linear infinite; opacity: .85; }
+.rmc-edge-path.rmc-done { stroke: var(--rc-done); opacity: .8; }
+.rmc-edge-path.rmc-active { stroke: var(--rc-active); }
+@keyframes rmc-dash { to { stroke-dashoffset: -24; } }
+
+.rmc-node {
+  position: absolute;
+  width: 236px;
+  background: linear-gradient(180deg, var(--rc-panel), color-mix(in srgb, var(--rc-panel) 88%, var(--rc-bg)));
+  border: 1px solid var(--rc-panel-border);
+  border-radius: 12px;
+  padding: 12px 13px 13px;
+  box-shadow: 0 6px 18px rgba(24,72,130,.12);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  cursor: grab;
+  pointer-events: auto;
+  isolation: isolate;
+}
+.rmc-node:active { cursor: grabbing; }
+.rmc-node:hover {
+  transform: translateY(-3px) scale(1.015);
+  border-color: #454955;
+  box-shadow: 0 14px 30px rgba(24,72,130,.18), 0 0 0 1px rgba(8,120,238,.08);
+  z-index: 3;
+}
+.rmc-node[data-status="active"] { border-color: rgba(62,197,247,.55); animation: rmc-active-card 2.2s ease-in-out infinite; }
+.rmc-node[data-status="active"]:hover { box-shadow: 0 14px 30px rgba(62,197,247,.18), 0 0 0 1px rgba(62,197,247,.25); }
+.rmc-node[data-status="done"] { border-color: rgba(61,220,132,.4); }
+.rmc-node[data-status="done"]:hover { box-shadow: 0 14px 30px rgba(61,220,132,.16), 0 0 0 1px rgba(61,220,132,.22); }
+@keyframes rmc-active-card {
+  0%, 100% { box-shadow: 0 6px 18px rgba(24,72,130,.12), 0 0 0 0 rgba(8,120,238,0); }
+  50% { box-shadow: 0 10px 26px rgba(24,72,130,.2), 0 0 0 5px rgba(8,120,238,.13); }
+}
+.rmc-signal-dot { fill: #d9faff; filter: drop-shadow(0 0 4px #3ec5f7) drop-shadow(0 0 8px #3ec5f7); }
+
+.rmc-node-head { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.rmc-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--rc-pending);
+  flex: none;
+  box-shadow: 0 0 0 3px rgba(255,255,255,.03);
+  cursor: pointer;
+}
+.rmc-node[data-status="active"] .rmc-dot { background: var(--rc-active); animation: rmc-pulse 1.6s ease-in-out infinite; }
+.rmc-node[data-status="done"] .rmc-dot { background: var(--rc-done); }
+@keyframes rmc-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(62,197,247,.55); }
+  50% { box-shadow: 0 0 0 6px rgba(62,197,247,0); }
+}
+
+.rmc-title { font-size: 13.5px; font-weight: 650; flex: 1; line-height: 1.25; outline: none; border-radius: 4px; }
+.rmc-title[contenteditable="true"]:focus { background: #0d1a2b; box-shadow: 0 0 0 2px rgba(62,197,247,.35); padding: 1px 3px; margin: -1px -3px; }
+.rmc-title:empty::before { content: attr(data-placeholder); color: var(--rc-text-dim); }
+
+.rmc-tag {
+  font-size: 10px; font-weight: 700;
+  padding: 2px 7px; border-radius: 999px;
+  background: rgba(61,220,132,.14); color: var(--rc-done);
+  flex: none;
+}
+
+.rmc-sub { font-size: 11.5px; color: var(--rc-text-dim); line-height: 1.45; outline: none; border-radius: 4px; min-height: 14px; }
+.rmc-sub[contenteditable="true"]:focus { background: #14161b; box-shadow: 0 0 0 2px rgba(139,143,154,.3); padding: 2px 4px; margin: -2px -4px; }
+.rmc-sub:empty::before { content: attr(data-placeholder); color: #55585f; }
+
+.rmc-foot { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; }
+.rmc-progress-label { font-size: 10px; font-weight: 700; letter-spacing: .2px; color: var(--rc-text-dim); text-transform: capitalize; }
+.rmc-node[data-status="active"] .rmc-progress-label { color: var(--rc-active); }
+.rmc-node[data-status="done"] .rmc-progress-label { color: var(--rc-done); }
+
+.rmc-avatar {
+  width: 20px; height: 20px; border-radius: 50%;
+  font-size: 9.5px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  color: #0b0c10;
+  border: 1.5px solid #101216;
+}
+
+.rmc-course-btn {
+  width: 100%;
+  margin-top: 12px;
+  padding: 7px 9px;
+  border: 1px solid rgba(62,197,247,.45);
+  border-radius: 8px;
+  background: rgba(62,197,247,.1);
+  color: var(--rc-active);
+  font: 700 10px var(--rc-font);
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease, transform .15s ease;
+}
+.rmc-course-btn:hover {
+  background: rgba(62,197,247,.18);
+  border-color: var(--rc-active);
+  transform: translateY(-1px);
+}
+.rmc-course-btn:disabled,
+.rmc-course-btn-locked {
+  border-color: rgba(139,143,154,.25);
+  background: rgba(139,143,154,.08);
+  color: var(--rc-text-dim);
+  cursor: not-allowed;
+  transform: none;
+}
+.rmc-shimmer-progress {
+  position: relative;
+  height: 3px;
+  margin-top: 10px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(62,197,247,.16);
+}
+.rmc-shimmer-progress::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 42%;
+  background: linear-gradient(90deg, transparent, #d9faff, #3ec5f7, transparent);
+  animation: rmc-shimmer 1.4s ease-in-out infinite;
+}
+@keyframes rmc-shimmer {
+  from { transform: translateX(-115%); }
+  to { transform: translateX(250%); }
+}
+
+.rmc-del {
+  position: absolute; top: -8px; right: -8px;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--rc-danger); color: #fff;
+  border: 2px solid var(--rc-bg);
+  font-size: 11px; line-height: 1;
+  display: none; align-items: center; justify-content: center;
+  cursor: pointer;
+}
+.rmc-node:hover .rmc-del { display: flex; }
+
+/* ---- sparkle burst, fired when a node flips to "done" ---- */
+.rmc-spark-layer { position: absolute; inset: -20px; pointer-events: none; z-index: 6; }
+.rmc-spark {
+  position: absolute; top: 50%; left: 50%;
+  width: 5px; height: 5px;
+  background: var(--rc-spark);
+  border-radius: 50%;
+  box-shadow: 0 0 6px 1px var(--rc-spark);
+  opacity: 0;
+  animation: rmc-spark-burst .85s cubic-bezier(.2,.8,.3,1) forwards;
+}
+.rmc-spark.rmc-star {
+  background: none; box-shadow: none;
+  width: auto; height: auto;
+  font-size: 11px; color: var(--rc-spark);
+}
+@keyframes rmc-spark-burst {
+  0% { transform: translate(-50%,-50%) scale(0) rotate(0deg); opacity: 1; }
+  70% { opacity: 1; }
+  100% { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(1) rotate(90deg); opacity: 0; }
+}
+.rmc-ring {
+  position: absolute; inset: -20px;
+  border-radius: 18px;
+  border: 2px solid var(--rc-spark);
+  opacity: .8;
+  animation: rmc-ring .7s ease-out forwards;
+  pointer-events: none;
+}
+@keyframes rmc-ring { to { transform: scale(1.18); opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .rmc-node, .rmc-edge-path, .rmc-dot, .rmc-spark, .rmc-ring { animation: none !important; transition: none !important; }
+}

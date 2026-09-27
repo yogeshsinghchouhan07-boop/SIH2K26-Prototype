@@ -1,0 +1,262 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/@fs/C:\\Users\\lanovo\\Downloads\\StatSkillAI_Auth_Updated\\src\\components\\HeroMain.jsx");import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=22d51e2a"; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== "undefined" && self instanceof WorkerGlobalScope;
+let prevRefreshReg;
+let prevRefreshSig;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react can't detect preamble. Something is wrong."
+    );
+  }
+  prevRefreshReg = window.$RefreshReg$;
+  prevRefreshSig = window.$RefreshSig$;
+  window.$RefreshReg$ = RefreshRuntime.getRefreshReg("C:/Users/lanovo/Downloads/StatSkillAI_Auth_Updated/src/components/HeroMain.jsx");
+  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+}
+"use client";
+;
+import { Box, Lock, Search, Settings, Sparkles } from "/node_modules/.vite/deps/lucide-react.js?v=22d51e2a";
+import { GlowingEffect } from "/src/components/ui/glowing-effect.jsx";
+export function GlowingEffectDemoSecond() {
+  return /* @__PURE__ */ jsxDEV(
+    "ul",
+    {
+      className: "grid grid-cols-1 grid-rows-none gap-4 md:grid-cols-12 md:grid-rows-3 lg:gap-4 xl:max-h-[34rem] xl:grid-rows-2",
+      children: [
+        /* @__PURE__ */ jsxDEV(
+          GridItem,
+          {
+            area: "md:[grid-area:1/1/2/7] xl:[grid-area:1/1/2/5]",
+            icon: /* @__PURE__ */ jsxDEV(Box, { className: "h-4 w-4 text-black dark:text-neutral-400" }, void 0, false, {
+              fileName: "C:/Users/lanovo/Downloads/StatSkillAI_Auth_Updated/src/components/HeroMain.jsx",
+              lineNumber: 30,
+              columnNumber: 15
+            }, this),
+            title: "Do things the right way",
+            description: "Running out of copy so I'll write anything."
+          },
+          void 0,
+          false,
+          {
+            fileName: "C:/Users/lanovo/Downloads/StatSkillAI_Auth_Updated/src/components/HeroMain.jsx",
+            lineNumber: 28,
+            columnNumber: 7
+          },
+          this
+        ),
+        /* @__PURE__ */ jsxDEV(
+          GridItem,
+          {
+            area: "md:[grid-area:1/7/2/13] xl:[grid-area:2/1/3/5]",
+            icon: /* @__PURE__ */ jsxDEV(Settings, { className: "h-4 w-4 text-black dark:text-neutral-400" }, void 0, false, {
+              fileName: "C:/Users/lanovo/Downloads/StatSkillAI_Auth_Updated/src/components/HeroMain.jsx",
+              lineNumber: 35,
+              columnNumber: 15
+            }, this),
+            title: "The best AI code editor ever.",
+            description: "Yes, it's true. I'm not even kidding. Ask my mom if you don't believe me."
+          },
+          void 0,
+          false,
+          {
+            fileName: "C:/Users/lanovo/Downloads/StatSkillAI_Auth_Updated/src/components/HeroMain.jsx",
+            lineNumber: 33,
+            columnNumber: 7
+          },
+          this
+        ),
+        /* @__PURE__ */ jsxDEV(
+          GridItem,
+          {
+            area: "md:[grid-area:2/1/3/7] xl:[grid-area:1/5/3/8]",
+            icon: /* @__PURE__ */ jsxDEV(Lock, { className: "h-4 w-4 text-black dark:text-neutral-400" }, void 0, false, {
+              fileName: "C:/Users/lanovo/Downloads/StatSkillAI_Auth_Updated/src/components/HeroMain.jsx",
+              lineNumber: 40,
+              columnNumber: 15
+            }, this),
+            title: "You should buy Aceternity UI Pro",
+            description: "It's the best money you'll ever spend"
+          },
+          void 0,
+          false,
+          {
+            fileName: "C:/Users/lanovo/Downloads/StatSkillAI_Auth_Updated/src/components/HeroMain.jsx",
+            lineNumber: 38,
+            columnNumber: 7
+          },
+          this
+        ),
+        /* @__PURE__ */ jsxDEV(
+          GridItem,
+          {
+            area: "md:[grid-area:2/7/3/13] xl:[grid-area:1/8/2/13]",
+            icon: /* @__PURE__ */ jsxDEV(Sparkles, { className: "h-4 w-4 text-black dark:text-neutral-400" }, void 0, false, {
+              fileName: "C:/Users/lanovo/Downloads/StatSkillAI_Auth_Updated/src/components/HeroMain.jsx",
+              lineNumber: 45,
+              columnNumber: 15
+            }, this),
+            title: "This card is also built by Cursor",
+            description: "I'm not even kidding. Ask my mom if you don't believe me."
+          },
+          void 0,
+          false,
+          {
+            fileName: "C:/Users/lanovo/Downloads/StatSkillAI_Auth_Updated/src/components/HeroMain.jsx",
+            lineNumber: 43,
+            columnNumber: 7
+          },
+          this
+        ),
+        /* @__PURE__ */ jsxDEV(
+          GridItem,
+          {
+            area: "md:[grid-area:3/1/4/13] xl:[grid-area:2/8/3/13]",
+            icon: /* @__PURE__ */ jsxDEV(Search, { className: "h-4 w-4 text-black dark:text-neutral-400" }, void 0, false, {
+              fileName: "C:/Users/lanovo/Downloads/StatSkillAI_Auth_Updated/src/components/HeroMain.jsx",
+              lineNumber: 50,
+              columnNumber: 15
+            }, this),
+            title: "Coming soon on Aceternity UI",
+            description: "I'm writing the code as I record this, no shit."
+          },
+          void 0,
+          false,
+          {
+            fileName: "C:/Users/lanovo/Downloads/StatSkillAI_Auth_Updated/src/components/HeroMain.jsx",
+            lineNumber: 48,
+            columnNumber: 7
+          },
+          this
+        )
+      ]
+    },
+    void 0,
+    true,
+    {
+      fileName: "C:/Users/lanovo/Downloads/StatSkillAI_Auth_Updated/src/components/HeroMain.jsx",
+      lineNumber: 26,
+      columnNumber: 5
+    },
+    this
+  );
+}
+_c = GlowingEffectDemoSecond;
+const GridItem = ({
+  area,
+  icon,
+  title,
+  description
+}) => {
+  return /* @__PURE__ */ jsxDEV("li", { className: `min-h-[14rem] list-none ${area}`, children: /* @__PURE__ */ jsxDEV("div", { className: "relative h-full rounded-2xl border p-2 md:rounded-3xl md:p-3", children: [
+    /* @__PURE__ */ jsxDEV(
+      GlowingEffect,
+      {
+        blur: 0,
+        borderWidth: 3,
+        spread: 80,
+        glow: true,
+        disabled: false,
+        proximity: 64,
+        inactiveZone: 0.01
+      },
+      void 0,
+      false,
+      {
+        fileName: "C:/Users/lanovo/Downloads/StatSkillAI_Auth_Updated/src/components/HeroMain.jsx",
+        lineNumber: 66,
+        columnNumber: 9
+      },
+      this
+    ),
+    /* @__PURE__ */ jsxDEV(
+      "div",
+      {
+        className: "border-0.75 relative flex h-full flex-col justify-between gap-6 overflow-hidden rounded-xl p-6 md:p-6 dark:shadow-[0px_0px_27px_0px_#2D2D2D]",
+        children: /* @__PURE__ */ jsxDEV("div", { className: "relative flex flex-1 flex-col justify-between gap-3", children: [
+          /* @__PURE__ */ jsxDEV("div", { className: "w-fit rounded-lg border border-gray-600 p-2", children: icon }, void 0, false, {
+            fileName: "C:/Users/lanovo/Downloads/StatSkillAI_Auth_Updated/src/components/HeroMain.jsx",
+            lineNumber: 77,
+            columnNumber: 13
+          }, this),
+          /* @__PURE__ */ jsxDEV("div", { className: "space-y-3", children: [
+            /* @__PURE__ */ jsxDEV(
+              "h3",
+              {
+                className: "-tracking-4 pt-0.5 font-sans text-xl/[1.375rem] font-semibold text-balance text-black md:text-2xl/[1.875rem] dark:text-white",
+                children: title
+              },
+              void 0,
+              false,
+              {
+                fileName: "C:/Users/lanovo/Downloads/StatSkillAI_Auth_Updated/src/components/HeroMain.jsx",
+                lineNumber: 81,
+                columnNumber: 15
+              },
+              this
+            ),
+            /* @__PURE__ */ jsxDEV(
+              "h2",
+              {
+                className: "font-sans text-sm/[1.125rem] text-black md:text-base/[1.375rem] dark:text-neutral-400 [&_b]:md:font-semibold [&_strong]:md:font-semibold",
+                children: description
+              },
+              void 0,
+              false,
+              {
+                fileName: "C:/Users/lanovo/Downloads/StatSkillAI_Auth_Updated/src/components/HeroMain.jsx",
+                lineNumber: 85,
+                columnNumber: 15
+              },
+              this
+            )
+          ] }, void 0, true, {
+            fileName: "C:/Users/lanovo/Downloads/StatSkillAI_Auth_Updated/src/components/HeroMain.jsx",
+            lineNumber: 80,
+            columnNumber: 13
+          }, this)
+        ] }, void 0, true, {
+          fileName: "C:/Users/lanovo/Downloads/StatSkillAI_Auth_Updated/src/components/HeroMain.jsx",
+          lineNumber: 76,
+          columnNumber: 11
+        }, this)
+      },
+      void 0,
+      false,
+      {
+        fileName: "C:/Users/lanovo/Downloads/StatSkillAI_Auth_Updated/src/components/HeroMain.jsx",
+        lineNumber: 74,
+        columnNumber: 9
+      },
+      this
+    )
+  ] }, void 0, true, {
+    fileName: "C:/Users/lanovo/Downloads/StatSkillAI_Auth_Updated/src/components/HeroMain.jsx",
+    lineNumber: 65,
+    columnNumber: 7
+  }, this) }, void 0, false, {
+    fileName: "C:/Users/lanovo/Downloads/StatSkillAI_Auth_Updated/src/components/HeroMain.jsx",
+    lineNumber: 64,
+    columnNumber: 5
+  }, this);
+};
+_c2 = GridItem;
+var _c, _c2;
+$RefreshReg$(_c, "GlowingEffectDemoSecond");
+$RefreshReg$(_c2, "GridItem");
+if (import.meta.hot && !inWebWorker) {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+if (import.meta.hot && !inWebWorker) {
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("C:/Users/lanovo/Downloads/StatSkillAI_Auth_Updated/src/components/HeroMain.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("C:/Users/lanovo/Downloads/StatSkillAI_Auth_Updated/src/components/HeroMain.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+
+//# sourceMappingURL=data:application/json;base64,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Q1RDO0FBQUFBO0FBQUFBLGNBRkg7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBLFlBR0E7QUFBQSxZQUNBO0FBQUEsY0FBQztBQUFBO0FBQUEsZ0JBQ0MsV0FBVTtBQUFBLGdCQUNUQztBQUFBQTtBQUFBQSxjQUZIO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQSxZQUdBO0FBQUEsZUFSRjtBQUFBO0FBQUE7QUFBQTtBQUFBLGlCQVNBO0FBQUEsYUFiRjtBQUFBO0FBQUE7QUFBQTtBQUFBLGVBY0E7QUFBQTtBQUFBLE1BaEJGO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQSxJQWlCQTtBQUFBLE9BMUJGO0FBQUE7QUFBQTtBQUFBO0FBQUEsU0EyQkEsS0E1QkY7QUFBQTtBQUFBO0FBQUE7QUFBQSxTQTZCQTtBQUVKO0FBQUVDLE1BdENJTDtBQUFRLElBQUFELElBQUFNO0FBQUEsYUFBQU4sSUFBQTtBQUFBLGFBQUFNLEtBQUEiLCJuYW1lcyI6WyJCb3giLCJMb2NrIiwiU2VhcmNoIiwiU2V0dGluZ3MiLCJTcGFya2xlcyIsIkdsb3dpbmdFZmZlY3QiLCJHbG93aW5nRWZmZWN0RGVtb1NlY29uZCIsIl9jIiwiR3JpZEl0ZW0iLCJhcmVhIiwiaWNvbiIsInRpdGxlIiwiZGVzY3JpcHRpb24iLCJfYzIiXSwiaWdub3JlTGlzdCI6W10sInNvdXJjZXMiOlsiSGVyb01haW4uanN4Il0sInNvdXJjZXNDb250ZW50IjpbIlwidXNlIGNsaWVudFwiOztcclxuaW1wb3J0IHsgQm94LCBMb2NrLCBTZWFyY2gsIFNldHRpbmdzLCBTcGFya2xlcyB9IGZyb20gXCJsdWNpZGUtcmVhY3RcIjtcclxuaW1wb3J0IHsgR2xvd2luZ0VmZmVjdCB9IGZyb20gXCJAL2NvbXBvbmVudHMvdWkvZ2xvd2luZy1lZmZlY3RcIjtcclxuXHJcbmV4cG9ydCBmdW5jdGlvbiBHbG93aW5nRWZmZWN0RGVtb1NlY29uZCgpIHtcclxuICByZXR1cm4gKFxyXG4gICAgPHVsXHJcbiAgICAgIGNsYXNzTmFtZT1cImdyaWQgZ3JpZC1jb2xzLTEgZ3JpZC1yb3dzLW5vbmUgZ2FwLTQgbWQ6Z3JpZC1jb2xzLTEyIG1kOmdyaWQtcm93cy0zIGxnOmdhcC00IHhsOm1heC1oLVszNHJlbV0geGw6Z3JpZC1yb3dzLTJcIj5cclxuICAgICAgPEdyaWRJdGVtXHJcbiAgICAgICAgYXJlYT1cIm1kOltncmlkLWFyZWE6MS8xLzIvN10geGw6W2dyaWQtYXJlYToxLzEvMi81XVwiXHJcbiAgICAgICAgaWNvbj17PEJveCBjbGFzc05hbWU9XCJoLTQgdy00IHRleHQtYmxhY2sgZGFyazp0ZXh0LW5ldXRyYWwtNDAwXCIgLz59XHJcbiAgICAgICAgdGl0bGU9XCJEbyB0aGluZ3MgdGhlIHJpZ2h0IHdheVwiXHJcbiAgICAgICAgZGVzY3JpcHRpb249XCJSdW5uaW5nIG91dCBvZiBjb3B5IHNvIEknbGwgd3JpdGUgYW55dGhpbmcuXCIgLz5cclxuICAgICAgPEdyaWRJdGVtXHJcbiAgICAgICAgYXJlYT1cIm1kOltncmlkLWFyZWE6MS83LzIvMTNdIHhsOltncmlkLWFyZWE6Mi8xLzMvNV1cIlxyXG4gICAgICAgIGljb249ezxTZXR0aW5ncyBjbGFzc05hbWU9XCJoLTQgdy00IHRleHQtYmxhY2sgZGFyazp0ZXh0LW5ldXRyYWwtNDAwXCIgLz59XHJcbiAgICAgICAgdGl0bGU9XCJUaGUgYmVzdCBBSSBjb2RlIGVkaXRvciBldmVyLlwiXHJcbiAgICAgICAgZGVzY3JpcHRpb249XCJZZXMsIGl0J3MgdHJ1ZS4gSSdtIG5vdCBldmVuIGtpZGRpbmcuIEFzayBteSBtb20gaWYgeW91IGRvbid0IGJlbGlldmUgbWUuXCIgLz5cclxuICAgICAgPEdyaWRJdGVtXHJcbiAgICAgICAgYXJlYT1cIm1kOltncmlkLWFyZWE6Mi8xLzMvN10geGw6W2dyaWQtYXJlYToxLzUvMy84XVwiXHJcbiAgICAgICAgaWNvbj17PExvY2sgY2xhc3NOYW1lPVwiaC00IHctNCB0ZXh0LWJsYWNrIGRhcms6dGV4dC1uZXV0cmFsLTQwMFwiIC8+fVxyXG4gICAgICAgIHRpdGxlPVwiWW91IHNob3VsZCBidXkgQWNldGVybml0eSBVSSBQcm9cIlxyXG4gICAgICAgIGRlc2NyaXB0aW9uPVwiSXQncyB0aGUgYmVzdCBtb25leSB5b3UnbGwgZXZlciBzcGVuZFwiIC8+XHJcbiAgICAgIDxHcmlkSXRlbVxyXG4gICAgICAgIGFyZWE9XCJtZDpbZ3JpZC1hcmVhOjIvNy8zLzEzXSB4bDpbZ3JpZC1hcmVhOjEvOC8yLzEzXVwiXHJcbiAgICAgICAgaWNvbj17PFNwYXJrbGVzIGNsYXNzTmFtZT1cImgtNCB3LTQgdGV4dC1ibGFjayBkYXJrOnRleHQtbmV1dHJhbC00MDBcIiAvPn1cclxuICAgICAgICB0aXRsZT1cIlRoaXMgY2FyZCBpcyBhbHNvIGJ1aWx0IGJ5IEN1cnNvclwiXHJcbiAgICAgICAgZGVzY3JpcHRpb249XCJJJ20gbm90IGV2ZW4ga2lkZGluZy4gQXNrIG15IG1vbSBpZiB5b3UgZG9uJ3QgYmVsaWV2ZSBtZS5cIiAvPlxyXG4gICAgICA8R3JpZEl0ZW1cclxuICAgICAgICBhcmVhPVwibWQ6W2dyaWQtYXJlYTozLzEvNC8xM10geGw6W2dyaWQtYXJlYToyLzgvMy8xM11cIlxyXG4gICAgICAgIGljb249ezxTZWFyY2ggY2xhc3NOYW1lPVwiaC00IHctNCB0ZXh0LWJsYWNrIGRhcms6dGV4dC1uZXV0cmFsLTQwMFwiIC8+fVxyXG4gICAgICAgIHRpdGxlPVwiQ29taW5nIHNvb24gb24gQWNldGVybml0eSBVSVwiXHJcbiAgICAgICAgZGVzY3JpcHRpb249XCJJJ20gd3JpdGluZyB0aGUgY29kZSBhcyBJIHJlY29yZCB0aGlzLCBubyBzaGl0LlwiIC8+XHJcbiAgICA8L3VsPlxyXG4gICk7XHJcbn1cclxuXHJcbmNvbnN0IEdyaWRJdGVtID0gKHtcclxuICBhcmVhLFxyXG4gIGljb24sXHJcbiAgdGl0bGUsXHJcbiAgZGVzY3JpcHRpb25cclxufSkgPT4ge1xyXG4gIHJldHVybiAoXHJcbiAgICA8bGkgY2xhc3NOYW1lPXtgbWluLWgtWzE0cmVtXSBsaXN0LW5vbmUgJHthcmVhfWB9PlxyXG4gICAgICA8ZGl2IGNsYXNzTmFtZT1cInJlbGF0aXZlIGgtZnVsbCByb3VuZGVkLTJ4bCBib3JkZXIgcC0yIG1kOnJvdW5kZWQtM3hsIG1kOnAtM1wiPlxyXG4gICAgICAgIDxHbG93aW5nRWZmZWN0XHJcbiAgICAgICAgICBibHVyPXswfVxyXG4gICAgICAgICAgYm9yZGVyV2lkdGg9ezN9XHJcbiAgICAgICAgICBzcHJlYWQ9ezgwfVxyXG4gICAgICAgICAgZ2xvdz17dHJ1ZX1cclxuICAgICAgICAgIGRpc2FibGVkPXtmYWxzZX1cclxuICAgICAgICAgIHByb3hpbWl0eT17NjR9XHJcbiAgICAgICAgICBpbmFjdGl2ZVpvbmU9ezAuMDF9IC8+XHJcbiAgICAgICAgPGRpdlxyXG4gICAgICAgICAgY2xhc3NOYW1lPVwiYm9yZGVyLTAuNzUgcmVsYXRpdmUgZmxleCBoLWZ1bGwgZmxleC1jb2wganVzdGlmeS1iZXR3ZWVuIGdhcC02IG92ZXJmbG93LWhpZGRlbiByb3VuZGVkLXhsIHAtNiBtZDpwLTYgZGFyazpzaGFkb3ctWzBweF8wcHhfMjdweF8wcHhfIzJEMkQyRF1cIj5cclxuICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwicmVsYXRpdmUgZmxleCBmbGV4LTEgZmxleC1jb2wganVzdGlmeS1iZXR3ZWVuIGdhcC0zXCI+XHJcbiAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwidy1maXQgcm91bmRlZC1sZyBib3JkZXIgYm9yZGVyLWdyYXktNjAwIHAtMlwiPlxyXG4gICAgICAgICAgICAgIHtpY29ufVxyXG4gICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJzcGFjZS15LTNcIj5cclxuICAgICAgICAgICAgICA8aDNcclxuICAgICAgICAgICAgICAgIGNsYXNzTmFtZT1cIi10cmFja2luZy00IHB0LTAuNSBmb250LXNhbnMgdGV4dC14bC9bMS4zNzVyZW1dIGZvbnQtc2VtaWJvbGQgdGV4dC1iYWxhbmNlIHRleHQtYmxhY2sgbWQ6dGV4dC0yeGwvWzEuODc1cmVtXSBkYXJrOnRleHQtd2hpdGVcIj5cclxuICAgICAgICAgICAgICAgIHt0aXRsZX1cclxuICAgICAgICAgICAgICA8L2gzPlxyXG4gICAgICAgICAgICAgIDxoMlxyXG4gICAgICAgICAgICAgICAgY2xhc3NOYW1lPVwiZm9udC1zYW5zIHRleHQtc20vWzEuMTI1cmVtXSB0ZXh0LWJsYWNrIG1kOnRleHQtYmFzZS9bMS4zNzVyZW1dIGRhcms6dGV4dC1uZXV0cmFsLTQwMCBbJl9iXTptZDpmb250LXNlbWlib2xkIFsmX3N0cm9uZ106bWQ6Zm9udC1zZW1pYm9sZFwiPlxyXG4gICAgICAgICAgICAgICAge2Rlc2NyaXB0aW9ufVxyXG4gICAgICAgICAgICAgIDwvaDI+XHJcbiAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgPC9kaXY+XHJcbiAgICAgIDwvZGl2PlxyXG4gICAgPC9saT5cclxuICApO1xyXG59O1xyXG4iXSwiZmlsZSI6IkM6L1VzZXJzL2xhbm92by9Eb3dubG9hZHMvU3RhdFNraWxsQUlfQXV0aF9VcGRhdGVkL3NyYy9jb21wb25lbnRzL0hlcm9NYWluLmpzeCJ9

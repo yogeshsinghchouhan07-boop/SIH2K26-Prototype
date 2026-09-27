@@ -1,0 +1,210 @@
+/* ===========================================================
+   Karmayogi Hero — light UI
+   Palette:
+     --ink        deep navy, replaces "black" everywhere below
+     --ink-muted  softened navy/grey for secondary text & links
+     --bg         warm ivory background
+     --accent     brighter blue, used sparingly (search button, active link)
+     --line       hairline dividers
+   =========================================================== */
+
+.hero {
+  --ink: #1b2340;
+  --ink-muted: #6b7280;
+  --bg: #f7f5f0;
+  --accent: #2f4fc4;
+  --btn: #1e2a54;
+  --line: #e4e0d6;
+
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Poppins", "Segoe UI", Arial, sans-serif;
+  border: none;
+  overflow: hidden;
+}
+
+/* ---------- Nav ---------- */
+.hero-nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 20px 32px;
+}
+
+.hero-nav__links {
+  display: flex;
+  gap: 32px;
+  background: #eceae4;
+  padding: 10px 20px;
+  border-radius: 999px;
+}
+
+.hero-nav__links a {
+  text-decoration: none;
+  color: var(--ink-muted);
+  font-size: 15px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.hero-nav__links a:hover,
+.hero-nav__links a.is-active {
+  color: var(--ink);
+}
+
+/* ---------- Video-masked headline ---------- */
+.hero-mask-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  aspect-ratio: 1900 / 380;
+  overflow: hidden;
+  background: #000;
+}
+
+.hero-mask-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.hero-mask-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #000;
+}
+
+/* ---------- Tagline / CTA / Search row ---------- */
+.hero-bottom-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 24px 32px;
+  border-top: 1px solid var(--line);
+}
+
+.hero-tagline {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.hero-tagline p {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.hero-cta {
+  background: var(--btn);
+  color: #ffffff;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.hero-cta:hover {
+  background: var(--accent);
+}
+
+.hero-search {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.hero-search input {
+  border: none;
+  outline: none;
+  padding: 10px 14px;
+  font-size: 14px;
+  width: 220px;
+  color: var(--ink);
+  background: transparent;
+}
+
+.hero-search input::placeholder {
+  color: var(--ink-muted);
+}
+
+.hero-search button {
+  background: var(--accent);
+  border: none;
+  color: #ffffff;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* ---------- Footer ---------- */
+.hero-page-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 18px 32px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  color: var(--ink-muted);
+}
+
+.hero-page-footer__left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.hero-page-footer__left strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.hero-page-footer__left a {
+  color: var(--ink-muted);
+  text-decoration: none;
+}
+
+.hero-page-footer__left a:hover {
+  color: var(--ink);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .hero-mask-wrap {
+    aspect-ratio: 1900 / 700;
+  }
+
+  .hero-mask-svg {
+    viewBox: 0 0 1900 700;
+  }
+
+  .hero-nav {
+    justify-content: center;
+  }
+
+  .hero-nav__links {
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

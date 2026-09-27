@@ -1,0 +1,874 @@
+.handshape-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  margin-bottom: 0;
+
+  background:
+    radial-gradient(
+      circle at 50% 38%,
+      rgba(139, 92, 246, 0.08),
+      transparent 34%
+    ),
+    #ffffff;
+
+  overflow: hidden;
+}
+
+body[data-theme="dark"] .handshape-section {
+  background:
+    radial-gradient(circle at 50% 38%, rgba(126, 92, 255, 0.18), transparent 30%),
+    linear-gradient(180deg, #061720 0%, #0d1f2d 38%, #0c1927 100%);
+}
+
+
+/* =========================================
+   STICKY CONTAINER
+========================================= */
+
+.handshape-sticky {
+  position: sticky;
+
+  top: 0;
+
+  width: 100%;
+  height: 100vh;
+
+  min-height: 620px;
+
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+/* =========================================
+   BACKGROUND
+========================================= */
+
+.handshape-background {
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  overflow: hidden;
+}
+
+.ambient-glow {
+  position: absolute;
+
+  width: 500px;
+  height: 500px;
+
+  border-radius: 50%;
+
+  filter: blur(100px);
+
+  opacity: 0.18;
+}
+
+.glow-one {
+  top: 15%;
+  left: 5%;
+
+  background: #a855f7;
+}
+
+.glow-two {
+  top: 15%;
+  right: 5%;
+
+  background: #7c3aed;
+}
+
+
+/* =========================================
+   HEADING
+========================================= */
+
+.handshape-heading {
+  position: relative;
+  z-index: 10;
+
+  text-align: center;
+
+  padding-top: 60px;
+  margin-bottom: 18px;
+
+  max-width: 850px;
+
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.heading-eyebrow {
+  display: inline-flex;
+
+  padding: 7px 14px;
+
+  border-radius: 999px;
+
+  background: rgba(124, 58, 237, 0.08);
+
+  border: 1px solid rgba(124, 58, 237, 0.14);
+
+  color: #7c3aed;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  letter-spacing: 0.14em;
+}
+
+.handshape-heading h2 {
+  margin: 18px 0 10px;
+
+  color: #111111;
+
+  font-size: clamp(42px, 5vw, 76px);
+
+  line-height: 0.98;
+
+  letter-spacing: -0.055em;
+
+  font-weight: 700;
+}
+
+.handshape-heading h2 span {
+  background: linear-gradient(
+    90deg,
+    #111111,
+    #7c3aed,
+    #a855f7
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
+}
+
+.handshape-heading p {
+  max-width: 580px;
+
+  margin: 20px auto 0;
+
+  color: #777777;
+
+  font-size: 16px;
+
+  line-height: 1.7;
+}
+
+body[data-theme="dark"] .heading-eyebrow {
+  background: rgba(152, 128, 255, 0.14);
+  border-color: rgba(180, 167, 255, 0.22);
+  color: #e4dcff;
+}
+
+body[data-theme="dark"] .handshape-heading h2 {
+  color: #edf6ff;
+}
+
+body[data-theme="dark"] .handshape-heading p,
+body[data-theme="dark"] .roadmap-content p,
+body[data-theme="dark"] .roadmap-number,
+body[data-theme="dark"] .scroll-indicator span {
+  color: #dbeafe;
+}
+
+body[data-theme="dark"] .roadmap-content h3 {
+  color: #f2f8ff;
+}
+
+body[data-theme="dark"] .roadmap-line {
+  background: rgba(151, 171, 209, 0.2);
+}
+
+body[data-theme="dark"] .roadmap-progress {
+  background: linear-gradient(90deg, #60a5fa, #8b5cf6);
+}
+
+body[data-theme="dark"] .roadmap-node {
+  background: rgba(17, 24, 39, 0.9);
+  border-color: rgba(141, 159, 207, 0.35);
+}
+
+body[data-theme="dark"] .node-inner {
+  color: #e2edff;
+}
+
+body[data-theme="dark"] .scroll-indicator {
+  color: #d9ebff;
+}
+
+
+/* =========================================
+   HAND STAGE
+========================================= */
+
+.hands-stage {
+  position: absolute;
+
+  top: 185px;
+
+  left: 0;
+
+  width: 100%;
+
+  height: 420px;
+
+  z-index: 5;
+
+  pointer-events: none;
+}
+
+
+/* =========================================
+   HANDS
+========================================= */
+
+.hand {
+  position: absolute;
+
+  top: 0;
+
+  width: 50%;
+
+  height: 430px;
+
+  display: flex;
+
+  align-items: center;
+
+  transition:
+    transform 0.08s linear;
+}
+
+.hand img {
+  display: block;
+
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: contain;
+
+  object-position: center;
+}
+
+
+/* Human */
+
+.human-hand {
+  left: -3%;
+
+  justify-content: flex-end;
+
+  transform-origin: right center;
+}
+
+.human-hand-image {
+  width: 760px;
+  height: 430px;
+}
+
+
+/* Robot */
+
+.robot-hand {
+  right: -3%;
+
+  justify-content: flex-start;
+
+  transform-origin: left center;
+}
+
+.robot-hand-image {
+  width: 760px;
+  height: 430px;
+}
+
+
+/* =========================================
+   MEETING BACKGROUND
+========================================= */
+
+.meeting-bg {
+  position: absolute;
+
+  left: 50%;
+  bottom: 15px;
+
+  width: min(420px, 62vw);
+  height: auto;
+
+  z-index: 4;
+
+  pointer-events: none;
+
+  opacity: 0;
+
+  filter: drop-shadow(0 24px 28px rgba(124, 58, 237, 0.18));
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.25s ease;
+}
+
+.meeting-bg img {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  object-fit: contain;
+}
+
+
+/* =========================================
+   CONNECTION GLOW
+========================================= */
+
+.connection-point {
+  position: absolute;
+
+  left: 50%;
+  top: 52%;
+
+  width: 80px;
+  height: 80px;
+
+  z-index: 20;
+
+  pointer-events: none;
+
+  transition:
+    opacity 0.15s linear,
+    transform 0.1s linear;
+}
+
+.connection-core {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 14px;
+  height: 14px;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background: white;
+
+  box-shadow:
+    0 0 10px #ffffff,
+    0 0 25px #a855f7,
+    0 0 55px #7c3aed,
+    0 0 90px rgba(124, 58, 237, 0.8);
+}
+
+.connection-ring {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(139, 92, 246, 0.5);
+}
+
+.ring-one {
+  width: 35px;
+  height: 35px;
+
+  animation: pulseRing 2s infinite;
+}
+
+.ring-two {
+  width: 60px;
+  height: 60px;
+
+  animation: pulseRing 2s 0.4s infinite;
+}
+
+.ring-three {
+  width: 90px;
+  height: 90px;
+
+  animation: pulseRing 2s 0.8s infinite;
+}
+
+@keyframes pulseRing {
+  0% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(0.7);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.5);
+  }
+}
+
+
+/* =========================================
+   PARTICLES
+========================================= */
+
+.connection-particle {
+  position: absolute;
+
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: #8b5cf6;
+
+  box-shadow:
+    0 0 12px #8b5cf6;
+}
+
+.particle-one {
+  top: 5%;
+  left: 25%;
+
+  animation: floatParticle 1.8s infinite;
+}
+
+.particle-two {
+  top: 70%;
+  left: 10%;
+
+  animation: floatParticle 2.2s infinite;
+}
+
+.particle-three {
+  top: 20%;
+  right: 10%;
+
+  animation: floatParticle 1.5s infinite;
+}
+
+.particle-four {
+  bottom: 5%;
+  right: 30%;
+
+  animation: floatParticle 2s infinite;
+}
+
+@keyframes floatParticle {
+  0%,
+  100% {
+    transform: translate(0, 0);
+
+    opacity: 0.3;
+  }
+
+  50% {
+    transform: translate(
+      10px,
+      -15px
+    );
+
+    opacity: 1;
+  }
+}
+
+
+/* =========================================
+   ROADMAP
+========================================= */
+
+.roadmap {
+  position: absolute;
+
+  z-index: 15;
+
+  left: 50%;
+
+  bottom: 45px;
+
+  width: min(1100px, 90%);
+
+  transform-origin: center;
+
+  transition:
+    transform 0.1s linear;
+}
+
+
+/* Main line */
+
+.roadmap-line {
+  position: absolute;
+
+  top: 31px;
+
+  left: 6%;
+
+  width: 88%;
+
+  height: 2px;
+
+  background: #e7defc;
+
+  overflow: hidden;
+}
+
+.roadmap-progress {
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      #c084fc,
+      #7c3aed,
+      #a855f7
+    );
+
+  box-shadow:
+    0 0 12px
+    rgba(124, 58, 237, 0.45);
+
+  transition:
+    width 0.08s linear;
+}
+
+
+/* Items */
+
+.roadmap-items {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  gap: 20px;
+}
+
+.roadmap-item {
+  position: relative;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  text-align: center;
+}
+
+
+/* Node */
+
+.roadmap-node {
+  position: relative;
+
+  width: 64px;
+  height: 64px;
+
+  border-radius: 18px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255, 255, 255, 0.92);
+
+  border: 1px solid #e8defb;
+
+  box-shadow:
+    0 10px 30px
+    rgba(60, 30, 100, 0.08);
+
+  z-index: 5;
+
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.node-inner {
+  width: 44px;
+  height: 44px;
+
+  border-radius: 13px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background: #faf7ff;
+
+  color: #8b5cf6;
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.05em;
+}
+
+
+/* Active node */
+
+.roadmap-item.active .roadmap-node {
+  transform: translateY(-5px);
+
+  border-color: #a78bfa;
+
+  box-shadow:
+    0 12px 35px
+    rgba(124, 58, 237, 0.18);
+}
+
+.roadmap-item.active .node-inner {
+  color: white;
+
+  background:
+    linear-gradient(
+      135deg,
+      #a855f7,
+      #7c3aed
+    );
+}
+
+
+/* Text */
+
+.roadmap-content {
+  margin-top: 16px;
+}
+
+.roadmap-number {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #a78bfa;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.12em;
+}
+
+.roadmap-content h3 {
+  margin: 0;
+
+  color: #18181b;
+
+  font-size: 17px;
+
+  letter-spacing: -0.025em;
+}
+
+.roadmap-content p {
+  max-width: 190px;
+
+  margin: 7px auto 0;
+
+  color: #858585;
+
+  font-size: 12px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================
+   SCROLL INDICATOR
+========================================= */
+
+.scroll-indicator {
+  position: absolute;
+
+  bottom: 20px;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  z-index: 20;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  color: #999999;
+
+  font-size: 11px;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+
+  transition: opacity 0.2s ease;
+}
+
+.scroll-arrow {
+  color: #7c3aed;
+
+  font-size: 18px;
+
+  animation: scrollBounce 1.5s infinite;
+}
+
+@keyframes scrollBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(5px);
+  }
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+
+  .handshape-heading {
+    padding-top: 45px;
+  }
+
+  .handshape-heading h2 {
+    font-size: 48px;
+  }
+
+  .hands-stage {
+    top: 200px;
+  }
+
+  .hand {
+    width: 60%;
+  }
+
+  .human-hand-image,
+  .robot-hand-image {
+    width: 560px;
+  }
+
+  .roadmap {
+    width: 94%;
+  }
+
+  .roadmap-content p {
+    display: none;
+  }
+
+}
+
+
+@media (max-width: 650px) {
+
+  .handshape-section {
+    height: 175vh;
+  }
+
+  .handshape-heading {
+    padding-top: 35px;
+  }
+
+  .heading-eyebrow {
+    font-size: 9px;
+  }
+
+  .handshape-heading h2 {
+    font-size: 38px;
+  }
+
+  .handshape-heading p {
+    font-size: 13px;
+  }
+
+  .hands-stage {
+    top: 220px;
+
+    height: 300px;
+  }
+
+  .hand {
+    width: 75%;
+
+    height: 300px;
+  }
+
+  .human-hand-image,
+  .robot-hand-image {
+    width: 400px;
+    height: 300px;
+  }
+
+  .roadmap {
+    bottom: 55px;
+
+    width: 95%;
+  }
+
+  .roadmap-items {
+    gap: 4px;
+  }
+
+  .roadmap-node {
+    width: 48px;
+    height: 48px;
+
+    border-radius: 14px;
+  }
+
+  .node-inner {
+    width: 34px;
+    height: 34px;
+
+    border-radius: 10px;
+
+    font-size: 9px;
+  }
+
+  .roadmap-content {
+    margin-top: 10px;
+  }
+
+  .roadmap-content h3 {
+    font-size: 11px;
+  }
+
+  .roadmap-number {
+    font-size: 8px;
+  }
+
+  .roadmap-line {
+    top: 23px;
+
+    left: 8%;
+
+    width: 84%;
+  }
+
+  .scroll-indicator {
+    display: none;
+  }
+
+}
