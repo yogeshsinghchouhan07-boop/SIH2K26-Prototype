@@ -10,7 +10,7 @@ export default function Footer() {
         <div className="footer-card">
           <div className="footer-grid">
             <div className="footer-brand">
-              <img src="/assets/logo-white.svg" alt="StatSkill AI" />
+              <div className="footer-brand-wordmark">Karmayogi <span>AI</span></div>
               <p>AI-powered competency learning for a future-ready workforce.</p>
             </div>
 

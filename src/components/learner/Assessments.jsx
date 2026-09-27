@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { ArrowRight, Award, RotateCcw } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { KineticText } from "../ui/kinetic-text";
+import { SparklesText } from "../ui/sparkles-text";
 
 const primary = "#1475e5";
 const card = {
@@ -185,19 +187,9 @@ export default function Assessments({
         }}
       >
         <div>
-          <div
-            style={{
-              fontSize: 11,
-              fontWeight: 800,
-              color: primary,
-              letterSpacing: 1,
-            }}
-          >
-            ASSESSMENTS
-          </div>
-          <h1 style={{ fontSize: 28, margin: "7px 0 5px", color: "#16395f" }}>
-            Validate your competency and unlock the next step
-          </h1>
+          <SparklesText className="learner-heading-sparkles" sparklesCount={5}>ASSESSMENTS</SparklesText>
+          <KineticText as="h1" text="Competency Assessment" className="learner-kinetic-heading" />
+          <p style={{ fontSize: 11, color: "#71869c", margin: "4px 0 0" }}>Validate your competency and unlock the next step.</p>
         </div>
       </div>
 

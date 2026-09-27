@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import SkillGapTable from "../Table.jsx";
 import { SparklesText } from "../ui/sparkles-text";
-import { AuroraText } from "../ui/aurora-text"
+import { KineticText } from "../ui/kinetic-text";
 const primary = "#1475e5";
 const card = {
   background: "var(--panel-strong)",
@@ -40,9 +40,7 @@ export default function SkillGapAnalyzer({ state, sidebarOpen = true }) {
       >
         <div className="mx-1 bg-blend-overlay rounded-2xl p-5 mt-8">
          <SparklesText>Skill Gap Analysis</SparklesText>
-          <h1 className="text-xl font-bold tracking-tighter md:text-3xl lg:text-5xl">
-      Get through the best way of <AuroraText>Introspection</AuroraText>
-    </h1>
+          <KineticText as="h1" text="Build your skills with focused learning" className="text-xl font-bold tracking-tighter md:text-3xl lg:text-5xl" />
         </div>
       </div>
 

@@ -1,11 +1,7 @@
 // 'use client';
 
 import { useEffect, useState } from 'react';
-import { Card, LineChart, List, ListItem } from '@tremor/react';
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
-}
+import { Area, AreaChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 
 const data = [
   { date: 'Jan 26', Competency: 58, 'Learning path': 15, 'Assessment score': 62 },
@@ -16,20 +12,6 @@ const data = [
   { date: 'Jun 26', Competency: 74, 'Learning path': 59, 'Assessment score': 78 },
   { date: 'Jul 26', Competency: 81, 'Learning path': 68, 'Assessment score': 81 },
 ];
-
-const summary = [
-  { name: 'Competency', value: 81 },
-  { name: 'Learning path', value: 68 },
-  { name: 'Assessment score', value: 81 },
-];
-
-const valueFormatter = (number) => `${number}%`;
-
-const statusColor = {
-  Competency: { light: 'bg-blue-600', dark: 'bg-cyan-500' },
-  'Learning path': { light: 'bg-teal-600', dark: 'bg-lime-500' },
-  'Assessment score': { light: 'bg-violet-600', dark: 'bg-pink-500' },
-};
 
 export default function ProgressCard() {
   const [isDark, setIsDark] = useState(
@@ -45,46 +27,32 @@ export default function ProgressCard() {
     return () => observer.disconnect();
   }, []);
 
+  const axisColor = isDark ? '#9db3ca' : '#8790a2';
+  const gridColor = isDark ? 'rgba(160,183,219,.14)' : '#eef0f5';
   return (
-    <>
-      <Card
-        className="sm:mx-auto sm:max-w-md border-0 ring-0 rounded-2xl shadow-none"
-        style={{
-          background: isDark ? '#101d2d' : '#fff',
-          color: isDark ? '#edf5ff' : '#19365b',
-        }}
-      >
-        <h3 style={{ fontSize: 14, fontWeight: 600, color: isDark ? '#edf5ff' : '#19365b' }}>
-          Learner progress by month
-        </h3>
-        <LineChart
-          data={data}
-          index="date"
-          categories={['Competency', 'Learning path', 'Assessment score']}
-          colors={isDark ? ['cyan', 'lime', 'pink'] : ['blue', 'teal', 'violet']}
-          valueFormatter={valueFormatter}
-          showLegend={false}
-          showYAxis={false}
-          startEndOnly={true}
-          className="progress-trend-chart mt-6 h-32"
-        />
-        <List className="mt-2" style={{ color: isDark ? '#d7e4f3' : '#52677f' }}>
-          {summary.map((item) => (
-            <ListItem key={item.name}>
-              <div className="flex items-center space-x-2">
-                <span
-                  className={classNames(statusColor[item.name][isDark ? 'dark' : 'light'], 'h-0.5 w-3')}
-                  aria-hidden={true}
-                />
-                <span style={{ color: isDark ? '#d7e4f3' : '#52677f' }}>{item.name}</span>
-              </div>
-              <span style={{ color: isDark ? '#f1f6fc' : '#19365b', fontWeight: 600 }}>
-                {valueFormatter(item.value)}
-              </span>
-            </ListItem>
-          ))}
-        </List>
-      </Card>
-    </>
+    <div style={{ background: isDark ? '#101d2d' : '#fff', color: isDark ? '#edf5ff' : '#19365b', width: '100%' }}>
+      <h3 style={{ fontSize: 14, fontWeight: 600, color: isDark ? '#edf5ff' : '#19365b', margin: '0 0 12px' }}>
+        Learner progress by month
+      </h3>
+      <div style={{ height: 238, width: '100%' }}>
+        <ResponsiveContainer width="100%" height="100%">
+          <AreaChart data={data} margin={{ top: 8, right: 8, left: -22, bottom: 0 }}>
+            <defs>
+              <linearGradient id="progressCompetencyFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#5148d8" stopOpacity={0.18}/><stop offset="100%" stopColor="#5148d8" stopOpacity={0}/></linearGradient>
+              <linearGradient id="progressPathFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#20a486" stopOpacity={0.12}/><stop offset="100%" stopColor="#20a486" stopOpacity={0}/></linearGradient>
+              <linearGradient id="progressAssessmentFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#eda64d" stopOpacity={0.12}/><stop offset="100%" stopColor="#eda64d" stopOpacity={0}/></linearGradient>
+            </defs>
+            <CartesianGrid stroke={gridColor} vertical={false}/>
+            <XAxis dataKey="date" tickLine={false} axisLine={false} tick={{ fill: axisColor, fontSize: 10 }}/>
+            <YAxis domain={[0, 100]} tickLine={false} axisLine={false} tick={{ fill: axisColor, fontSize: 10 }} tickFormatter={(v) => `${v}%`}/>
+            <Tooltip formatter={(value) => [`${value}%`]} contentStyle={{ background: isDark ? '#13243a' : '#fff', borderColor: gridColor, borderRadius: 8, color: isDark ? '#edf5ff' : '#19365b' }}/>
+            <Legend iconType="circle" wrapperStyle={{ fontSize: 10, color: axisColor }}/>
+            <Area type="monotone" dataKey="Competency" stroke="#5148d8" strokeWidth={2.5} fill="url(#progressCompetencyFill)"/>
+            <Area type="monotone" dataKey="Learning path" stroke="#20a486" strokeWidth={2} fill="url(#progressPathFill)"/>
+            <Area type="monotone" dataKey="Assessment score" stroke="#eda64d" strokeWidth={2} fill="url(#progressAssessmentFill)"/>
+          </AreaChart>
+        </ResponsiveContainer>
+      </div>
+    </div>
   );
 }

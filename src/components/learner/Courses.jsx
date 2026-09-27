@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Lock } from "lucide-react";
 import { CardBody, CardContainer, CardItem } from "../ui/3d-card";
 import { SparklesText } from "../ui/sparkles-text";
-import { AuroraText } from "../ui/aurora-text"
+import { KineticText } from "../ui/kinetic-text";
 import { IconCloudDemo } from "../IconCloudDemo";
 const defaultCourseImage =
   "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80";
@@ -35,9 +35,7 @@ export default function Courses({ state, sidebarOpen = true }) {
           <div className="aspect-square p-4 object-cover"><IconCloudDemo/></div>
         <div className="mx-auto bg-blend-overlay rounded-2xl p-5 mt-8">
          <SparklesText>My Courses</SparklesText>
-          <h1 className="text-xl font-bold tracking-tighter md:text-3xl lg:text-5xl">
-      Learning Influenced By<AuroraText>Your Goal</AuroraText>
-    </h1>
+          <KineticText as="h1" text="Learning Influenced By Your Goal" className="text-xl font-bold tracking-tighter md:text-3xl lg:text-5xl" />
         </div>
         </div>
       </div>

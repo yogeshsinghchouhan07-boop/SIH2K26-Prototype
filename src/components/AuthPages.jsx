@@ -74,7 +74,7 @@ function RadioGroup({ value, onChange }) {
 function AuthImagePanel() {
   return (
     <div className="auth-image-panel" style={{ minHeight: "100vh", position: "relative", overflow: "hidden", background: "linear-gradient(135deg,#eee2fb 0%,#f8eafb 100%)", display: "flex", alignItems: "center", justifyContent: "center", padding: 28, boxSizing: "border-box" }}>
-      <img src="/assets/auth-left-reference.png" alt="StatSkill AI platform preview" style={{ width: "100%", maxWidth: 920, height: "auto", display: "block", borderRadius: 2 }} />
+      <img src="/assets/auth-left-reference.png" alt="Karmayogi AI learning platform preview" style={{ width: "100%", maxWidth: 920, height: "auto", display: "block", borderRadius: 2 }} />
     </div>
   );
 }
@@ -86,7 +86,7 @@ function AuthHeader({ title, subtitle }) {
       <button onClick={() => navigate("/")} style={{ border: 0, background: "none", padding: 0, display: "flex", alignItems: "center", gap: 7, color: "#686868", fontSize: 13, cursor: "pointer", marginBottom: 23 }}>
         <ArrowLeft size={15} /> Back to the website
       </button>
-      <img src="/assets/logo.svg" alt="StatSkill AI" style={{ width: 128, height: "auto", objectFit: "contain", objectPosition: "left", marginBottom: 20 }} />
+      <div className="auth-wordmark">Karmayogi <span>AI</span></div>
       <h1 style={{ margin: 0, fontSize: 25, lineHeight: 1.2, color: "#151515", fontWeight: 750 }}>{title}</h1>
       <p style={{ margin: "5px 0 23px", fontSize: 14, color: muted }}>{subtitle}</p>
     </>
@@ -102,11 +102,17 @@ export function LoginPage({ onLogin }) {
 
   const submit = (e) => {
     e.preventDefault();
-    if (email === "employee@gov.in" && password === "123456") {
+    if (email === "admin@karmayogi.gov.in" && password === "Admin@123") {
+      onLogin({ name: "Admin Sharma", email, role: "Admin", department: "Karmayogi Platform" });
+      navigate("/admin");
+    } else if (email === "testadmindepartment@gmail.com" && password === "metrologicaldepartment@123") {
+      onLogin({ name: "Statistics Department Head", email, role: "DepartmentAdmin", department: "Statistics" });
+      navigate("/admin");
+    } else if (email === "employee@gov.in" && password === "123456") {
       onLogin({ name: "Government Learner", email, role: "Learner", department: "Statistics & Data Services" });
       navigate("/overview");
     } else {
-      setError("For the frontend demo use employee@gov.in / 123456.");
+      setError("Use the learner or admin demo credentials shown below.");
     }
   };
 
@@ -115,7 +121,7 @@ export function LoginPage({ onLogin }) {
       <AuthImagePanel />
       <main style={{ background: "#fff", minHeight: "100vh", overflowY: "auto", padding: "54px clamp(38px, 5vw, 74px)", boxSizing: "border-box" }}>
         <div style={{ maxWidth: 480, margin: "0 auto" }}>
-          <AuthHeader title="Login to StatSkill AI" subtitle="Welcome back to your personalized learning platform." />
+          <AuthHeader title="Login to Karmayogi AI" subtitle="Welcome back to your personalized learning platform." />
           <form onSubmit={submit}>
             <TextField label="Government Email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your government email address" />
             <TextField
@@ -133,8 +139,60 @@ export function LoginPage({ onLogin }) {
             </div>
             <button type="submit" style={{ width: "100%", height: 46, border: 0, borderRadius: 6, background: purple, color: "#fff", fontSize: 14, fontWeight: 700, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>Login <ArrowRight size={16} /></button>
           </form>
+          <div style={{ marginTop: 16, padding: "11px 13px", background: "#f7f6fc", border: "1px solid #eeecf7", borderRadius: 7, color: "#656579", fontSize: 11, lineHeight: 1.6 }}>
+            <b style={{ color: "#4e477f" }}>Demo access</b><br />
+            Learner: employee@gov.in / 123456<br />
+            Platform admin: admin@karmayogi.gov.in / Admin@123<br />
+            Statistics department head: testadmindepartment@gmail.com / metrologicaldepartment@123
+          </div>
           <p style={{ textAlign: "center", fontSize: 13, color: muted, marginTop: 25 }}>
             New learner? <button onClick={() => navigate("/signup")} style={{ border: 0, background: "none", color: "#59479e", fontWeight: 650, cursor: "pointer", padding: 0 }}>Register for iGOT</button>
+          </p>
+        </div>
+      </main>
+    </div>
+  );
+}
+
+export function AdminLoginPage({ onLogin }) {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("testadmindepartment@gmail.com");
+  const [password, setPassword] = useState("metrologicaldepartment@123");
+  const [error, setError] = useState("");
+  const submit = (e) => {
+    e.preventDefault();
+    if (email === "admin@karmayogi.gov.in" && password === "Admin@123") {
+      onLogin({ name: "Admin Sharma", email, role: "Admin", department: "Karmayogi Platform" });
+      navigate("/admin");
+      return;
+    }
+    if (email === "testadmindepartment@gmail.com" && password === "metrologicaldepartment@123") {
+      onLogin({ name: "Statistics Department Head", email, role: "DepartmentAdmin", department: "Statistics" });
+      navigate("/admin");
+      return;
+    }
+    setError("Use one of the demo credentials shown below.");
+  };
+
+  return (
+    <div className="auth-shell" style={shell}>
+      <AuthImagePanel />
+      <main style={{ background: "#fff", minHeight: "100vh", overflowY: "auto", padding: "54px clamp(38px, 5vw, 74px)", boxSizing: "border-box" }}>
+        <div style={{ maxWidth: 480, margin: "0 auto" }}>
+          <AuthHeader title="Administrator sign in" subtitle="Sign in to manage Karmayogi or review your department’s learning progress." />
+          <form onSubmit={submit}>
+            <TextField label="Administrator email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter administrator email" />
+            <TextField label="Password" value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Enter password" />
+            {error && <div role="alert" style={{ background: "#fff2f2", color: "#b33d3d", borderRadius: 7, padding: "10px 12px", fontSize: 12, marginBottom: 14 }}>{error}</div>}
+            <div style={{ marginBottom: 18, padding: "11px 13px", background: "#f7f6fc", border: "1px solid #eeecf7", borderRadius: 7, color: "#656579", fontSize: 11, lineHeight: 1.6 }}>
+              <b style={{ color: "#4e477f" }}>Demo sign-in credentials</b><br />
+              Platform admin: admin@karmayogi.gov.in / Admin@123<br />
+              Statistics department head: testadmindepartment@gmail.com / metrologicaldepartment@123
+            </div>
+            <button type="submit" style={{ width: "100%", height: 46, border: 0, borderRadius: 6, background: purple, color: "#fff", fontSize: 14, fontWeight: 700, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>Sign in to admin <ArrowRight size={16} /></button>
+          </form>
+          <p style={{ textAlign: "center", fontSize: 13, color: muted, marginTop: 25 }}>
+            <button onClick={() => navigate("/login")} style={{ border: 0, background: "none", color: "#59479e", fontWeight: 650, cursor: "pointer", padding: 0 }}>Return to learner login</button>
           </p>
         </div>
       </main>

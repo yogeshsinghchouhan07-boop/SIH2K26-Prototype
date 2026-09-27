@@ -39,7 +39,7 @@ export default function Navbar({ dashboard = false }) {
       <div className="container nav-shell">
         <div className="nav-inner">
           <button className="brand magnetic" onClick={() => navigate("/")}>
-            <img src="/assets/logo.svg" alt="StatSkill AI" />
+            <span className="brand-wordmark">Karmayogi <span>AI</span></span>
           </button>
           {!dashboard && (
             <nav className={open ? "mobile-open" : ""}>

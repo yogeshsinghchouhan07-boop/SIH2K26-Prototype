@@ -9,8 +9,8 @@ import {
   Gauge,
   LogOut,
   MessageSquareText,
-  PanelLeftClose,
   Settings,
+  Shield,
   Sparkles,
   Target,
   User,
@@ -110,7 +110,7 @@ export function CardShell({ children }) {
   );
 }
 
-export function AppHeader({ onLogout, onSidebarToggle, sidebarOpen }) {
+export function AppHeader({ onLogout, onSidebarToggle, sidebarOpen, workspace = "learner", userName, userEmail }) {
   const navigate = useNavigate();
   const { isAuthenticated } = useApp();
   const [profileOpen, setProfileOpen] = useState(false);
@@ -201,19 +201,19 @@ export function AppHeader({ onLogout, onSidebarToggle, sidebarOpen }) {
             cursor: "pointer",
           }}
         >
-          {sidebarOpen ? (
-            <PanelLeftClose size={18} />
-          ) : (
-            <img
-              src="/assets/moreInfo.png"
-              alt="More info"
-              className="h-5 w-5"
-            />
-          )}
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" aria-hidden="true" style={{ overflow: "visible" }}>
+            <g transform={sidebarOpen ? "translate(0 6) rotate(45 12 6)" : undefined} style={{ transition: "transform 220ms ease" }}>
+              <path d="M4 6h16" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+            </g>
+            <path d="M4 12h16" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" style={{ opacity: sidebarOpen ? 0 : 1, transition: "opacity 150ms ease" }} />
+            <g transform={sidebarOpen ? "translate(0 -6) rotate(-45 12 18)" : undefined} style={{ transition: "transform 220ms ease" }}>
+              <path d="M4 18h16" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+            </g>
+          </svg>
         </button>
 
         <button
-          onClick={() => navigate(isAuthenticated ? "/overview" : "/")}
+          onClick={() => navigate(workspace === "admin" ? "/admin" : isAuthenticated ? "/overview" : "/")}
           style={{
             border: 0,
             background: "none",
@@ -224,7 +224,7 @@ export function AppHeader({ onLogout, onSidebarToggle, sidebarOpen }) {
             letterSpacing: "-0.04em",
           }}
         >
-          StatSkill <span style={{ color: primary }}>AI</span>
+          <>Karmayogi <span style={{ color: primary }}>AI</span></>
         </button>
 
         <div
@@ -248,8 +248,7 @@ export function AppHeader({ onLogout, onSidebarToggle, sidebarOpen }) {
               border: `1px solid ${palette.line}`,
             }}
           >
-            <img src="/assets/fire.png" alt="Streak" className="h-6 w-6" /> 7
-            day streak
+            {workspace === "admin" ? <><Shield size={17} color={primary} /> Administration</> : <><img src="/assets/fire.png" alt="Streak" className="h-6 w-6" /> 7 day streak</>}
           </div>
 
           <ThemeToggler
@@ -373,10 +372,10 @@ export function AppHeader({ onLogout, onSidebarToggle, sidebarOpen }) {
                           color: palette.text,
                         }}
                       >
-                        Government Learner
+                        {userName || (workspace === "admin" ? "Admin Sharma" : "Government Learner")}
                       </div>
                       <div style={{ fontSize: 10, color: palette.muted }}>
-                        learner@statskill.ai
+                        {userEmail || (workspace === "admin" ? "admin@karmayogi.gov.in" : "learner@karmayogi.ai")}
                       </div>
                     </div>
                   </div>

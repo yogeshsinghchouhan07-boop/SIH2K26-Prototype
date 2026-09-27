@@ -1,5 +1,7 @@
 import { useMemo, useState } from "react";
 import { ArrowUpRight, MessageSquareText, Sparkles } from "lucide-react";
+import { KineticText } from "../ui/kinetic-text";
+import { SparklesText } from "../ui/sparkles-text";
 
 const primary = "#1475e5";
 const card = {
@@ -26,8 +28,8 @@ const starterMessages = [
 
 const knowledgeBase = [
   {
-    match: ["project", "statskill", "platform", "app", "what can you do", "about"],
-    answer: "StatSkill AI is a competency-based learning platform for statistics and data skills. It brings together a learner overview, skill-gap summaries, recommended courses, a learning roadmap, and assessments. The intended flow is to review your competency profile, choose a learning resource for a priority gap, practise, then take an assessment and use the result to guide your next step. The current screens use sample frontend data, so the scores and recommendations are demonstrations rather than live learner records.",
+    match: ["project", "karmayogi", "platform", "app", "what can you do", "about"],
+    answer: "Karmayogi AI is a competency-based learning platform for statistics and data skills. It brings together a learner overview, skill-gap summaries, recommended courses, a learning roadmap, and assessments. The intended flow is to review your competency profile, choose a learning resource for a priority gap, practise, then take an assessment and use the result to guide your next step. The current screens use sample frontend data, so the scores and recommendations are demonstrations rather than live learner records.",
   },
   {
     match: ["gap", "gaps", "priority", "priorities", "improve", "next skill", "next course", "recommend"],
@@ -70,7 +72,7 @@ function getAnswer(question) {
   const entry = matches.length
     ? { answer: matches.filter(({ score }) => score >= Math.max(1, topScore * 0.45)).map(({ entry: match }) => match.answer).join("\n\n") }
     : undefined;
-  return entry?.answer ?? "I can help with the StatSkill AI project, interpreting the sample skill gaps, SQL, Python, data visualization, or assessment preparation. Try asking about one of those topics. These replies use project sample data and aren’t connected to a live AI service yet.";
+  return entry?.answer ?? "I can help with the Karmayogi AI platform, interpreting the sample skill gaps, SQL, Python, data visualization, or assessment preparation. Try asking about one of those topics. These replies use project sample data and aren’t connected to a live AI service yet.";
 }
 
 export default function AIChatbot({ sidebarOpen = true }) {
@@ -82,7 +84,7 @@ export default function AIChatbot({ sidebarOpen = true }) {
 
   const quickPrompts = useMemo(
     () => [
-      "What is StatSkill AI?",
+      "What is Karmayogi AI?",
       "Explain my skill gaps",
       "How should I learn SQL?",
       "Help me prepare for an assessment",
@@ -122,19 +124,8 @@ export default function AIChatbot({ sidebarOpen = true }) {
         }}
       >
         <div>
-          <div
-            style={{
-              fontSize: 11,
-              fontWeight: 800,
-              color: primary,
-              letterSpacing: 1,
-            }}
-          >
-            AI CHATBOT
-          </div>
-          <h1 style={{ fontSize: 28, margin: "7px 0 5px", color: "var(--heading)" }}>
-            Learning Coach
-          </h1>
+          <SparklesText className="learner-heading-sparkles" sparklesCount={5}>AI LEARNING COACH</SparklesText>
+          <KineticText as="h1" text="Learning Coach" className="learner-kinetic-heading" />
         </div>
       </div>
 

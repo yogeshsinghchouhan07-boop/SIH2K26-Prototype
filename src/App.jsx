@@ -26,8 +26,9 @@ import Footer from "./components/Footer";
 import CursorFX from "./components/CursorFX";
 import SideRail from "./components/SideRail";
 import Reveal from "./components/Reveal";
-import { LoginPage, SignupPage } from "./components/AuthPages";
+import { AdminLoginPage, LoginPage, SignupPage } from "./components/AuthPages";
 import LearnerApp from "./components/learner/LearnerApp";
+import AdminDashboard from "./components/admin/AdminDashboard";
 import { courses, roadmap, skillGaps } from "./data/learningData";
 import AIComponent from "./components/AIComponent";
 import Hero from "./components/Hero";
@@ -119,7 +120,7 @@ function Home() {
             <Reveal className="section-heading centered">
               <h2>One Platform for Smarter Skill Development</h2>
               <p>
-                StatSkill AI assesses competencies, identifies role-specific
+                Karmayogi AI assesses competencies, identifies role-specific
                 skill gaps, recommends relevant learning resources, and
                 continuously adapts the learning journey based on performance.
               </p>
@@ -178,7 +179,7 @@ function Home() {
                   faster and smarter.
                 </h2>
                 <p>
-                  StatSkill AI evaluates your current skills, identifies gaps,
+                  Karmayogi AI evaluates your current skills, identifies gaps,
                   and creates a focused roadmap tailored to your role and goals.
                   From assessment and analysis to recommendation, learning,
                   testing, and reassessment, every step is designed to make
@@ -415,7 +416,7 @@ function SimplePage({ title, text }) {
       <CursorFX />
       <div className="simple-page">
         <div className="container">
-          <span className="kicker">STATSKILL AI</span>
+          <span className="kicker">KARMAYOGI AI</span>
           <h1>{title}</h1>
           <p>{text}</p>
           <button
@@ -510,6 +511,12 @@ function LearnerRoutes() {
   );
 }
 
+function AdminRouteGate() {
+  const { auth, logout } = useApp();
+  if (auth?.role !== "Admin" && auth?.role !== "DepartmentAdmin") return <Navigate to="/admin/login" replace />;
+  return <AdminDashboard account={auth} onLogout={logout} />;
+}
+
 export default function App() {
   const location = useLocation();
   const { login } = useApp();
@@ -518,12 +525,14 @@ export default function App() {
   }, [location.pathname]);
   return (
     <Routes>
+      <Route path="/admin/login" element={<AdminLoginPage onLogin={login} />} />
+      <Route path="/admin/*" element={<AdminRouteGate />} />
       <Route path="/" element={<Home />} />
       <Route
         path="/about"
         element={
           <SimplePage
-            title="About StatSkill AI"
+            title="About Karmayogi AI"
             text="A competency-first learning experience designed around assessment, skill-gap intelligence and adaptive learning."
           />
         }
@@ -532,7 +541,7 @@ export default function App() {
         path="/how-it-works"
         element={
           <SimplePage
-            title="How StatSkill AI Works"
+            title="How Karmayogi AI Works"
             text="Assess → analyze → identify gaps → recommend → learn → test → reassess. The journey continuously adapts to learner performance."
           />
         }

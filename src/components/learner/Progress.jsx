@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { Flame } from "lucide-react";
 import ProgressCard from "@/components/ProgressCard.jsx";
 import { SparklesText } from "../ui/sparkles-text";
-import { AuroraText } from "../ui/aurora-text"
+import { KineticText } from "../ui/kinetic-text";
 const primary = "#1475e5";
 const card = {
   background: "#fff",
@@ -279,11 +279,9 @@ export default function ProgressView({ state, sidebarOpen = true }) {
           marginBottom: 22,
         }}
       >
-     <div className=" bg-blend-overlay rounded-2xl p-5 mt-8">
+        <div className=" bg-blend-overlay rounded-2xl p-5 mt-8">
               <SparklesText>Progress Analysis</SparklesText>
-               <h1 className="text-xl font-bold tracking-tighter md:text-3xl lg:text-5xl">
-           Have a look what you <AuroraText>Gained</AuroraText> so far
-         </h1>
+              <KineticText as="h1" text="See how far you have come" className="text-xl font-bold tracking-tighter md:text-3xl lg:text-5xl" />
              </div>
       </div>
 

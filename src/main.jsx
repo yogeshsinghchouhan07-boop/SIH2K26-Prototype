@@ -13,14 +13,14 @@ class AppErrorBoundary extends React.Component {
   }
 
   componentDidCatch(error, info) {
-    console.error("StatSkill AI failed to render", error, info.componentStack);
+    console.error("Karmayogi AI failed to render", error, info.componentStack);
   }
 
   render() {
     if (this.state.error) {
       return (
         <main role="alert" style={{ maxWidth: 720, margin: "10vh auto", padding: 24, fontFamily: "system-ui, sans-serif", color: "#17233b" }}>
-          <h1 style={{ fontSize: 24 }}>StatSkill AI couldn’t load</h1>
+          <h1 style={{ fontSize: 24 }}>Karmayogi AI couldn’t load</h1>
           <p>The page encountered an error while rendering. Refresh the page to try again.</p>
           <pre style={{ overflowWrap: "anywhere", whiteSpace: "pre-wrap", padding: 16, borderRadius: 8, background: "#f2f4f8", color: "#8b2635" }}>{this.state.error.message}</pre>
         </main>
