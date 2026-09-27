@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Flame } from "lucide-react";
+import { BookOpen, Clock3, Target, ClipboardCheck } from "lucide-react";
 import ProgressCard from "@/components/ProgressCard.jsx";
 import { SparklesText } from "../ui/sparkles-text";
 import { KineticText } from "../ui/kinetic-text";
@@ -68,6 +68,61 @@ const statusColors = {
   stable: "#64748b",
   improving: "#18a77d",
 };
+
+function ProgressRings({ state }) {
+  const courses = state.courses || [];
+  const courseProgress = courses.length
+    ? Math.round(courses.reduce((total, course) => total + course.progress, 0) / courses.length)
+    : 0;
+  const measures = [
+    { label: "Competency", value: state.competency ?? 0, color: "#2685f5", icon: Target },
+    { label: "Course progress", value: courseProgress, color: "#8055e8", icon: BookOpen },
+    { label: "Assessment avg.", value: 81, color: "#ed5d9b", icon: ClipboardCheck },
+    { label: "Learning time", value: 60, display: "24h", detail: "of 40h goal", color: "#f3b735", icon: Clock3 },
+  ];
+  const size = 208;
+  const center = size / 2;
+  const stroke = 10;
+  const rings = measures.map((measure, index) => {
+    const radius = 91 - index * 17;
+    const circumference = 2 * Math.PI * radius;
+    return { ...measure, radius, circumference, offset: circumference * (1 - Math.min(100, Math.max(0, measure.value)) / 100) };
+  });
+
+  return (
+    <section aria-labelledby="progress-rings-title" style={{ ...card, padding: 18, minWidth: 0 }}>
+      <h2 id="progress-rings-title" style={{ color: "#0a335f", fontSize: 15, margin: "0 0 3px" }}>Your progress</h2>
+      <p style={{ color: "#0a335f", fontSize: 10, margin: "0 0 10px" }}>A snapshot across your learning journey</p>
+      <div style={{ display: "grid", justifyItems: "center", padding: "2px 0 10px" }}>
+        <div style={{ position: "relative", width: size, height: size }}>
+          <svg viewBox={`0 0 ${size} ${size}`} width="100%" height="100%" role="img" aria-label={`Progress rings: ${measures.map(({ label, value }) => `${label} ${value}%`).join(", ")}`}>
+            {rings.map((ring) => (
+              <g key={ring.label} transform={`rotate(-90 ${center} ${center})`}>
+                <circle cx={center} cy={center} r={ring.radius} fill="none" stroke={ring.color} strokeOpacity=".12" strokeWidth={stroke} />
+                <circle cx={center} cy={center} r={ring.radius} fill="none" stroke={ring.color} strokeWidth={stroke} strokeLinecap="round" strokeDasharray={ring.circumference} strokeDashoffset={ring.offset} style={{ transition: "stroke-dashoffset .8s ease" }} />
+              </g>
+            ))}
+          </svg>
+          <div style={{ position: "absolute", inset: 0, display: "grid", placeContent: "center", textAlign: "center" }}>
+            <strong style={{ color: "#1475e5", fontSize: 27, lineHeight: 1 }}>{state.competency ?? 0}%</strong>
+            <span style={{ color: "#71869c", fontSize: 9, marginTop: 4 }}>competency</span>
+          </div>
+        </div>
+      </div>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px 8px" }}>
+        {measures.map(({ label, value, display, detail, color, icon: Icon }) => (
+          <div key={label} style={{ display: "flex", alignItems: "center", gap: 7, minWidth: 0 }}>
+            <Icon size={15} color={color} style={{ flexShrink: 0 }} />
+            <span style={{ minWidth: 0 }}>
+              <b style={{ display: "block", color: "#263b55", fontSize: 10 }}>{display || `${value}%`}</b>
+              <small style={{ display: "block", color: "#71869c", fontSize: 8 }}>{detail || label}</small>
+            </span>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
 
 function CompetencyChart() {
   const chartRef = useRef(null);
@@ -292,31 +347,7 @@ export default function ProgressView({ state, sidebarOpen = true }) {
           <ProgressCard/>
         </div>
 
-        <div style={{ ...card, padding: 18 }}>
-          <h2 style={{ fontSize: 15, margin: "0 0 15px" }}>Learning Streak</h2>
-          <div style={{ display: "grid", placeItems: "center", padding: 20 }}>
-            <div
-              style={{
-                width: 105,
-                height: 105,
-                borderRadius: "50%",
-                background: "#fff5e8",
-                display: "grid",
-                placeItems: "center",
-                border: "8px solid #ffe2bd",
-              }}
-            >
-              <div style={{ textAlign: "center" }}>
-                <Flame size={28} color="#ed8c27" />
-                <b style={{ display: "block", fontSize: 24 }}>7</b>
-                <span style={{ fontSize: 8, color: "#7c90a6" }}>days</span>
-              </div>
-            </div>
-          </div>
-          <p style={{ fontSize: 10, color: "#71869c", textAlign: "center" }}>
-            Keep learning daily to extend your streak.
-          </p>
-        </div>
+        <ProgressRings state={state} />
       </div>
 
       <div

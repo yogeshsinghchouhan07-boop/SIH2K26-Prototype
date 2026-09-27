@@ -8,7 +8,8 @@ import { WobbleCard } from "../ui/wobble-card";
 import { ImagesBadge } from "../ui/images-badge";
 import { Compare } from "../ui/compare";
 import { BentoGrid, BentoGridItem } from "../ui/bento-grid";
-
+import { Button } from "../ui/button";
+import { CoolMode } from "../ui/cool-mode"
 import { KineticText } from "../ui/kinetic-text"
 import {
   IconChartHistogram,
@@ -298,7 +299,8 @@ export default function Overview({ state, setState, sidebarOpen = true }) {
               every assessment into measurable growth.
             </p>
           </div>
-             
+             <CoolMode>
+        
           <button
             className="btn btn-primary"
             style={{
@@ -324,6 +326,7 @@ export default function Overview({ state, setState, sidebarOpen = true }) {
             </div>
             <ArrowRight size={16} />
           </button>
+      </CoolMode>
         </div>
       </div>
 
@@ -372,8 +375,9 @@ export default function Overview({ state, setState, sidebarOpen = true }) {
         onSubmit={onSubmit}
       />
     </div>
-    <RainbowButton onClick={() => navigate("/ai-chatbot")}>Get Your Doubt Be Solved</RainbowButton>
-          
+    <CoolMode className="flex justify-center items-center ">
+    <RainbowButton onClick={() => navigate("/ai-chatbot")} className="ml-50">Get Your Doubt Be Solved</RainbowButton>
+          </CoolMode>
         </div>
         <WobbleCard containerClassName="col-span-1 lg:col-span-3 bg-blue-900 min-h-0">
           <div
